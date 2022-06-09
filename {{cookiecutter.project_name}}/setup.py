@@ -76,7 +76,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='{{cookiecutter.project_name}}',
+    name='{{ cookiecutter.project_name|replace(' ','-') }}',
     version=__version__,
     description='{{cookiecutter.project_desc}}',
     long_description=long_description,
