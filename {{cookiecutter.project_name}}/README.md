@@ -93,14 +93,14 @@ First, enter venv and install the local package and pyinstaller
 
 ~~~shell
 >. .venv/Scripts/activate
-(.venv) D:\path\to\proj\{{cookiecutter.project_name}}>pip install .
-Processing d:\path\to\proj\{{cookiecutter.project_name}}
+(.venv) >pip install .
+Processing {{cookiecutter.project_name}}
 ~snip~
 Installing collected packages: {{cookiecutter.package_name}}
     Running setup.py install for {{cookiecutter.package_name}} ... done
 Successfully installed {{cookiecutter.package_name}}-0.1.0
 
-(.venv) D:\path\to\proj\{{cookiecutter.project_name}}>pip install pyinstaller
+(.venv) >pip install pyinstaller
 ~snip~
 Successfully installed pyinstaller-3.6
 ~~~
@@ -108,7 +108,7 @@ Successfully installed pyinstaller-3.6
 Use pyinstaller to build the exe file.
 
 ~~~shell
-(.venv) D:\path\to\proj\{{cookiecutter.project_name}}>pyinstaller {{cookiecutter.package_name}}\cli.py --onefile --name {{cookiecutter.cli_name}}
+(.venv) >pyinstaller {{cookiecutter.package_name}}\cli.py --onefile --name {{cookiecutter.cli_name}}
 ~snip~
 13691 INFO: Building EXE from EXE-00.toc completed successfully.
 ~~~
