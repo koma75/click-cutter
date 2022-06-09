@@ -94,7 +94,7 @@ First, enter venv and install the local package and pyinstaller
 ~~~shell
 >. .venv/Scripts/activate
 (.venv) >pip install .
-Processing {{cookiecutter.project_name}}
+Processing /path/to/proj/{{cookiecutter.project_name}}
 ~snip~
 Installing collected packages: {{cookiecutter.package_name}}
     Running setup.py install for {{cookiecutter.package_name}} ... done
