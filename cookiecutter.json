@@ -1,0 +1,31 @@
+{
+    "project_name": "My-Click-Project",
+    "package_name": "{{ cookiecutter.project_name|lower|replace(' ', '_')|replace('-', '_') }}",
+    "cli_name": "{{ cookiecutter.package_name|replace('_', '') }}",
+    "cli_type": [
+        "simple",
+        "subcmd"
+    ],
+    "use_config_yaml": [
+        "No",
+        "Yes"
+    ],
+    "project_ver": "0.1.0",
+    "project_desc": "This is my command-line project.",
+    "python_ver": [
+        "3.8",
+        "3.9",
+        "3.10"
+    ],
+    "author_name": "my_name",
+    "author_email": "my_email@example.com",
+    "license": [
+        "MIT",
+        "BSD2",
+        "BSD3",
+        "Apache2",
+        "None"
+    ],
+    "github_user": "my_username",
+    "project_url": "https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.project_name|replace(' ','-') }}/"
+}
