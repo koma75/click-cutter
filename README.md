@@ -6,7 +6,7 @@ Click-Cutter is a [Coockiecutter](https://github.com/cookiecutter/cookiecutter) 
 ## Usage
 
 ~~~Shell
-> coockiecutter path/to/click-cutter
+> cookiecutter https://github.com/koma75/click-cutter
 ~~~
 
 After executing the command above, you will be prompted with several parameter setting questions.
