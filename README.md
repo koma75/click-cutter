@@ -3,6 +3,8 @@
 Click-Cutter is a [Coockiecutter](https://github.com/cookiecutter/cookiecutter) template to create a quick-and-dirty CLI tool based on 
 [CLICK](https://click.palletsprojects.com/).
 
+NOTE: the base code this template generates is not really intended for production level use.
+
 ## Usage
 
 ~~~Shell
