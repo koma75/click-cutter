@@ -64,7 +64,7 @@
 
 from enum import IntEnum
 
-{%- if cookiecutter.use_config_yaml == 'Yes' %}
+{% if cookiecutter.use_config_yaml == 'Yes' %}
 import yaml
 {%- endif %}
 import os
@@ -91,10 +91,10 @@ def pout(msg=None, Verbose=0, level=Level.INFO, newline=True):
     CRITICAL -- Intended to show critical error. output to STDERR
 
     Keyword Arguments:
-        msg {string} -- message to print (default: {None})
-        Verbose {Int} -- Set True to print DEBUG message (default: {0})
-        level {Level} -- Set message level for coloring (default: {Level.INFO})
-        newline {bool} -- set to False if trailing new line is not needed (default: {True})
+        msg (string) -- message to print (default: {None})
+        Verbose (Int) -- Set True to print DEBUG message (default: {0})
+        level (Level) -- Set message level for coloring (default: {Level.INFO})
+        newline (bool) -- set to False if trailing new line is not needed (default: {True})
     """
     error=False
     if level in {Level.NOTSET, Level.DEBUG}:
@@ -116,8 +116,14 @@ def pout(msg=None, Verbose=0, level=Level.INFO, newline=True):
         pass
     click.echo(click.style(str(msg), fg=fg), nl=newline, err=error)
 
-{%- if cookiecutter.use_config_yaml == 'Yes' %}
+{% if cookiecutter.use_config_yaml == 'Yes' %}
 def createConf(conf, verbose):
+    """Generate default configuratino at path specified in conf
+
+    Args:
+        conf (string): Path to generate default configuration file to.
+        verbose (int): Verbosity level
+    """
     try:
         with click.open_file(conf, 'w', 'utf-8') as fd:
             fd.writelines([
@@ -147,7 +153,7 @@ def cmd(kwargs):
     pout("Command line arguments:", verbose, Level.INFO)
     pout(pformat(kwargs,depth=3,indent=4), verbose, Level.INFO)
 
-{%- if cookiecutter.use_config_yaml == 'Yes' %}
+{% if cookiecutter.use_config_yaml == 'Yes' %}
     # 0. Get information from config.yml
     # If file does not exist, create a default config file
     if not os.path.exists(kwargs['config']):
@@ -162,6 +168,10 @@ def cmd(kwargs):
     pout(pformat(conf,depth=3,indent=4), verbose, Level.INFO)
 {%- endif %}
     # 1. Now parse kwargs
+{%- if cookiecutter.use_config_yaml == 'Yes' %}
+    # TODO: it may be a good time to merge the options specified in kwargs into conf to put all
+    #       execution parameters in one place.
+{%- endif %}
 
     # 2. and do it's bidding
 
