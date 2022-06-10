@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := build
-.PHONY: build publish package venv
+.PHONY: build freeze publish package publish pubtest clean venv install
 PROJ_NAME = {{cookiecutter.package_name}}
 PY_VERSION = {{cookiecutter.python_version}}
 SHELL = bash
