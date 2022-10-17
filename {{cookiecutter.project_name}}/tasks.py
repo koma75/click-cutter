@@ -56,8 +56,7 @@ def cmd_updatepip():
 @task()
 def clean(c):
     """remove package artifacts"""
-    c.run(cmd_rm("dist"))
-    c.run(cmd_rm("*.egg-info"))
+    run_rm(c, ["dist", "*.egg-info"])
     pass
 
 @task()
