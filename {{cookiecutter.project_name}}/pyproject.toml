@@ -43,7 +43,6 @@ dependencies = [
 {%- if cookiecutter.use_config_yaml == 'Yes' %}
     'PyYaml>=6,<7',
 {%- endif %}
-    'python_version<{{cookiecutter.python_ver}}',
 ]
 dynamic = ["version"]
 
