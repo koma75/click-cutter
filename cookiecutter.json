@@ -15,7 +15,8 @@
     "python_ver": [
         "3.8",
         "3.9",
-        "3.10"
+        "3.10",
+        "3.11"
     ],
     "author_name": "my_name",
     "author_email": "my_email@example.com",

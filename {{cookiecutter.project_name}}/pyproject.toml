@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{ cookiecutter.project_name|replace(' ','-') }}"
+authors = [
+    { name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}"},
+]
+description = "{{cookiecutter.project_desc}}"
+readme = "README.md"
+requires-python = ">={{cookiecutter.python_ver}}"
+#keywords = ["one", "two"]
+license = {text = "LICENSE"}
+classifiers = [
+    # Maturity of the project
+    # 3 - Alpha
+    # 4 - Beta
+    # 5 - Production/Stable
+    'Development Status :: 3 - Alpha',
+    'Environment :: Console',
+    'Intended Audience :: End Users/Desktop',
+{%- if cookiecutter.license == 'MIT' %}
+    'License :: OSI Approved :: MIT License',
+{%- elif cookiecutter.license == 'BSD2' %}
+    'License :: OSI Approved :: BSD License',
+{%- elif cookiecutter.license == 'BSD3' %}
+    'License :: OSI Approved :: BSD License',
+{%- elif cookiecutter.license == 'Apache2' %}
+    'OSI Approved :: Apache Software License',
+{%- elif cookiecutter.license == 'None' %}
+{%- endif %}
+    'Natural Language :: English',
+    'Operating System :: MacOS :: MacOS X',
+    'Operating System :: Microsoft :: Windows :: Windows 10',
+    'Operating System :: POSIX :: Linux',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: {{cookiecutter.python_ver}}',
+    'Topic :: Utilities',
+]
+dependencies = [
+    'click>=8,<9',
+{%- if cookiecutter.use_config_yaml == 'Yes' %}
+    'PyYaml>=6,<7',
+{%- endif %}
+    'python_version<{{cookiecutter.python_ver}}',
+]
+dynamic = ["version"]
+
+# [project.optional-dependencies]
+# dev = ["pyinstaller"]
+
+[project.scripts]
+{{cookiecutter.cli_name}} = "{{cookiecutter.package_name}}.cli:main"
+
+[tool.setuptools.packages.find]
+exclude = ["build", "test"]
+
+[tool.setuptools.dynamic]
+version = {attr = "{{cookiecutter.package_name}}.__version__"}

@@ -8,4 +8,5 @@
 .. moduleauthor:: {{cookiecutter.author_name}} <{{cookiecutter.author_email}}>
 """
 
-from .version import __version__, __release__  # noqa
+__version__ = "{{cookiecutter.project_ver}}"  #: the working version
+__release__ = "{{cookiecutter.project_ver}}"  #: the release version
