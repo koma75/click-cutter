@@ -28,5 +28,5 @@
         "None"
     ],
     "github_user": "my_username",
-    "project_url": "https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.project_name|replace(' ','-') }}/"
+    "project_url": "https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.project_name|replace(' ','-') }}"
 }
