@@ -68,5 +68,4 @@
 .. moduleauthor:: {{cookiecutter.author_name}} <{{cookiecutter.author_email}}>
 """
 
-__version__ = "{{cookiecutter.project_ver}}"  #: the working version
-__release__ = "{{cookiecutter.project_ver}}"  #: the release version
+from ._version import __version__, __version_tuple__

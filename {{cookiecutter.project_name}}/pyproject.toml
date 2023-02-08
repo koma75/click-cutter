@@ -46,8 +46,8 @@ dependencies = [
 ]
 dynamic = ["version"]
 
-# [project.optional-dependencies]
-# dev = ["pyinstaller","build","twine"]
+[project.optional-dependencies]
+dev = ["pyinstaller","build","twine"]
 
 [project.urls]
 homepage = "{{cookiecutter.project_url}}/"
@@ -63,3 +63,6 @@ exclude = ["build", "test"]
 
 [tool.setuptools.dynamic]
 version = {attr = "{{cookiecutter.package_name}}.__version__"}
+
+[tool.setuptools_scm]
+write_to = "{{cookiecutter.package_name}}/_version.py"
