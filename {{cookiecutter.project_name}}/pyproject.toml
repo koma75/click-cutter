@@ -47,7 +47,13 @@ dependencies = [
 dynamic = ["version"]
 
 # [project.optional-dependencies]
-# dev = ["pyinstaller"]
+# dev = ["pyinstaller","build","twine"]
+
+[project.urls]
+homepage = "{{cookiecutter.project_url}}/"
+documentation = "{{cookiecutter.project_url}}/blob/main/README.md"
+repository = "{{cookiecutter.project_url}}.git"
+changelog = "{{cookiecutter.project_url}}/blob/main/CHANGELOG.md"
 
 [project.scripts]
 {{cookiecutter.cli_name}} = "{{cookiecutter.package_name}}.cli:main"
