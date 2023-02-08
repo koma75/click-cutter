@@ -131,9 +131,3 @@ The interface relevant to versioning is whatever defined in this
 document's "Usage" section (includes all (sub)commands, and their cli arguments.
 {%- endif %}
 
-Version History
-------------------------------------------------------------------------
-
-Date        | Version   | Changes
-:--         | --:       | :--
-{% now 'local', '%Y.%m.%d' %}  | 0.1.0     | First Release
