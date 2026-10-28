@@ -3,24 +3,24 @@
 
 {%- if cookiecutter.license == 'BSD3' %}
 # BSD 3-Clause License
-# 
+#
 # Copyright (c) {% now 'utc', '%Y' %} {{ cookiecutter.author_name }} <{{cookiecutter.author_email}}>
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without modification,
 # are permitted provided that the following conditions are met:
-# 
+#
 # 1. Redistributions of source code must retain the above copyright notice, this
 #   list of conditions and the following disclaimer.
 #
 # 2. Redistributions in binary form must reproduce the above copyright notice, this
 #    list of conditions and the following disclaimer in the documentation and/or
 #    other materials provided with the distribution.
-# 
+#
 # 3. Neither the name of {{ cookiecutter.project_name }} nor the names of its
 #    contributors may be used to endorse or promote products derived from this
 #    software without specific prior written permission.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 # ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 # WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -33,20 +33,20 @@
 # OF THE POSSIBILITY OF SUCH DAMAGE.
 {%- elif cookiecutter.license == 'BSD2' %}
 # BSD 2-Clause License
-# 
+#
 # Copyright (c) {% now 'utc', '%Y' %} {{ cookiecutter.author_name }} <{{cookiecutter.author_email}}>
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 # 1. Redistributions of source code must retain the above copyright notice, this
 #    list of conditions and the following disclaimer.
-# 
+#
 # 2. Redistributions in binary form must reproduce the above copyright notice,
 #    this list of conditions and the following disclaimer in the documentation
 #    and/or other materials provided with the distribution.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -101,18 +101,19 @@ def pout(msg=None, Verbose=0, level=Level.INFO, newline=True):
         # blah
         if Verbose < 2:
             return
-        fg = 'magenta'
+        fg = "magenta"
     elif level == Level.INFO:
-        fg = 'green'
+        fg = "green"
     elif level == Level.WARNING:
         if Verbose < 1:
             return
-        fg = 'yellow'
-        error=True
+        fg = "yellow"
+        error = True
     elif level in {Level.ERROR, Level.CRITICAL}:
-        fg = 'red'
-        error=True
+        fg = "red"
+        error = True
     else:
+        fg = "white"
         pass
     click.echo(click.style(str(msg), fg=fg), nl=newline, err=error)
 
