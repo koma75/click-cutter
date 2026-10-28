@@ -1,36 +1,30 @@
 .DEFAULT_GOAL := build
-.PHONY: build freeze publish package publish pubtest clean venv install
+.PHONY: build freeze publish package pubtest clean venv install
 PROJ_NAME = {{cookiecutter.package_name}}
 PY_VERSION = {{cookiecutter.python_ver}}
 SHELL = bash
 
 
 build: venv
-	pip install --editable .
+	uv pip install --editable .
 
 freeze:
-	pip freeze > requirements.txt
+	@uv pip freeze > requirements.txt
 
 package: clean
-	python setup.py sdist
+	@uv build
 
 publish: package
-	twine upload dist/*
+	@uv run twine upload dist/*
 
 pubtest: package
-	twine upload --repository pypitest dist/*
+	@uv run twine upload --repository pypitest dist/*
 
 clean :
-	rm -rf dist \
-	rm -rf *.egg-info
+	rm -rf dist *.egg-info
 
-venv: .venv
-	source .venv/bin/activate
-
-.venv:
-	python3 -m venv .venv
-	source .venv/bin/activate && pip install pip --upgrade
+venv:
+	@uv venv --python $(PY_VERSION) .venv
 
 install:
-	pip install -r requirements.txt
-
+	@uv pip install -r requirements.txt

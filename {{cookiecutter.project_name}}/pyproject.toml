@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm"]
+requires = ["setuptools >= 77.0.3", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -11,7 +11,10 @@ description = "{{cookiecutter.project_desc}}"
 readme = "README.md"
 requires-python = ">={{cookiecutter.python_ver}}"
 #keywords = ["one", "two"]
-license = {text = "LICENSE"}
+{%- if cookiecutter.license != 'None' %}
+license = "{{cookiecutter.license}}"
+license-files = ["LICENSE"]
+{%- endif %}
 classifiers = [
     # Maturity of the project
     # 3 - Alpha
@@ -20,16 +23,6 @@ classifiers = [
     'Development Status :: 3 - Alpha',
     'Environment :: Console',
     'Intended Audience :: End Users/Desktop',
-{%- if cookiecutter.license == 'MIT' %}
-    'License :: OSI Approved :: MIT License',
-{%- elif cookiecutter.license == 'BSD2' %}
-    'License :: OSI Approved :: BSD License',
-{%- elif cookiecutter.license == 'BSD3' %}
-    'License :: OSI Approved :: BSD License',
-{%- elif cookiecutter.license == 'Apache2' %}
-    'OSI Approved :: Apache Software License',
-{%- elif cookiecutter.license == 'None' %}
-{%- endif %}
     'Natural Language :: English',
     'Operating System :: MacOS :: MacOS X',
     'Operating System :: Microsoft :: Windows :: Windows 10',
@@ -39,9 +32,9 @@ classifiers = [
     'Topic :: Utilities',
 ]
 dependencies = [
-    'click>=8,<9',
+    'click>=8.1,<9',
 {%- if cookiecutter.use_config_yaml == 'Yes' %}
-    'PyYaml>=6,<7',
+    'PyYAML>=6,<7',
 {%- endif %}
 ]
 dynamic = ["version"]
@@ -50,10 +43,10 @@ dynamic = ["version"]
 dev = ["pyinstaller","build","twine"]
 
 [project.urls]
-homepage = "{{cookiecutter.project_url}}/"
+homepage = "{{cookiecutter.project_url}}"
 documentation = "{{cookiecutter.project_url}}/blob/main/README.md"
 repository = "{{cookiecutter.project_url}}.git"
-changelog = "{{cookiecutter.project_url}}/blob/main/CHANGELOG.md"
+changelog = "{{cookiecutter.project_url}}/blob/main/CHANGES.md"
 
 [project.scripts]
 {{cookiecutter.cli_name}} = "{{cookiecutter.package_name}}.cli:main"

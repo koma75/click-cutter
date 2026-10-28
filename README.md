@@ -33,16 +33,19 @@ Enter the parameters as described below to customise the template for your proje
     * If your CLI takes configuration files for default settings or not
     * default : No
 * project_ver
-    * Initial Project version (default is set to 0.1.0 since Semver is initially implied in Readme)
+    * Initial Project version.  Used in the CHANGES.md first release entry and in
+      the README versioning section.
     * default : 0.1.0
 * project_desc
     * One line description of the project
     * default : This is my command-line project.
 * python_ver
     * version of Python targeted by this project
-    * 3.8 (default)
-    * 3.9
-    * 3.10
+    * 3.10 (default)
+    * 3.11
+    * 3.12
+    * 3.13
+    * 3.14
 * author_name
     * Name of the author of this project.  Used in LICENSE
     * default : my_name
@@ -50,17 +53,20 @@ Enter the parameters as described below to customise the template for your proje
     * email address of the athor.  Used in LICENSE
     * my_email@example.com
 * license
-    * License for this project
+    * License for this project.  The value is an [SPDX](https://spdx.org/licenses/)
+      identifier and is used verbatim in pyproject.toml, in the source file
+      headers as `SPDX-License-Identifier`, and to pick the LICENSE text.
     * MIT (default)
         * [MIT License](https://opensource.org/licenses/MIT)
-    * BSD2
+    * BSD-2-Clause
         * [BSD 2-Clause License](https://opensource.org/licenses/BSD-2-Clause)
-    * BSD3
+    * BSD-3-Clause
         * [BSD 3-Clause License](https://opensource.org/licenses/BSD-3-Clause)
-    * Apache2
+    * Apache-2.0
         * [Apache License 2.0](https://opensource.org/licenses/Apache-2.0)
     * None
         * No License specified. Only Copyright will be displayed in LICENSE
+          and no `SPDX-License-Identifier` is written in the source headers.
 * github_user
     * Github username of the author
     * default : my_username

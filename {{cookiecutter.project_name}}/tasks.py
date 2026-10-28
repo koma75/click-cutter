@@ -1,4 +1,3 @@
-from distutils import cmd
 import os, glob
 from invoke import task
 
@@ -6,14 +5,14 @@ from invoke import task
 ### Setup default variables
 ##############################################
 
-VENV_PY = Path(".venv/bin/python").resolve()
+PY_VERSION = "{{cookiecutter.python_ver}}"
 
 ##############################################
 ### Helper Functions
 ##############################################
 
 def run_rm(c, paths):
-    """run rm -rf command equivalent for each pf against paths
+    """run rm -rf command equivalent for each of paths
 
     Args:
         c (Obj): invoke context object
@@ -28,26 +27,14 @@ def run_rm(c, paths):
     # run file removal function based on platform
     if os.name == 'nt':
         for f in files:
-            if os.isdir(f):
+            if os.path.isdir(f):
                 c.run(f"rmdir /s /q {f}")
             else:
-                c.run(f"del /s /f /q {f}")
+                c.run(f"del /f /q {f}")
     else:
         for f in files:
             c.run(f"rm -rf {f}")
     pass
-
-def cmd_updatepip():
-    """return cli command to update pip inside venv if possible.
-
-    Returns:
-        String: cli command for updating pip inside venv
-    """
-    if os.name == 'nt':
-        pfcmd = "echo Run 'pip install pip --upgrade' after activating venv using venv.bat"
-    else:
-        pfcmd = f"{VENV_PY} -m pip install pip --upgrade && {VENV_PY} -m pip install --upgrade build twine"
-    return pfcmd
 
 
 ##############################################
@@ -62,39 +49,40 @@ def clean(c):
 
 @task()
 def venv(c):
-    """initialize venv"""
-    c.run(f"{VENV_PY} -m venv .venv")
-    c.run(cmd_updatepip())
-
-@task(pre=[clean])
-def package(c):
-    """Generate sdist"""
-    c.run(f"{VENV_PY} build")
+    """initialize a uv-managed dev venv"""
+    c.run(f"uv venv --python {PY_VERSION} .venv")
+    c.run("uv pip install build twine")
 
 @task()
 def freeze(c):
     """save requirements.txt"""
-    c.run(f"{VENV_PY} -m pip freeze > requirements.txt")
+    c.run("uv pip freeze > requirements.txt")
     pass
+
+@task(pre=[clean])
+def package(c):
+    """Generate sdist"""
+    c.run("uv build")
 
 @task(pre=[package])
 def publish(c):
     """upload to PyPi"""
-    c.run(f"{VENV_PY} -m twine upload dist/*")
+    c.run("uv run twine upload dist/*")
+    pass
 
 @task(pre=[package])
 def pubtest(c):
     """upload to pypitest"""
-    c.run(f"{VENV_PY} -m twine upload --repository pypitest dist/*")
+    c.run("uv run twine upload --repository pypitest dist/*")
     pass
 
 @task(pre=[freeze])
 def install(c):
     """install package from requirements.txt"""
-    c.run(f"{VENV_PY} -m pip install -r requirements.txt")
+    c.run("uv pip install -r requirements.txt")
 
 @task(pre=[venv], default=True)
 def build(c):
     """Build and install as editable"""
-    c.run(f"{VENV_PY} -m pip install --editable .")
+    c.run("uv pip install --editable .")
     pass

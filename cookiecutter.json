@@ -23,9 +23,9 @@
     "author_email": "my_email@example.com",
     "license": [
         "MIT",
-        "BSD2",
-        "BSD3",
-        "Apache2",
+        "BSD-2-Clause",
+        "BSD-3-Clause",
+        "Apache-2.0",
         "None"
     ],
     "github_user": "my_username",

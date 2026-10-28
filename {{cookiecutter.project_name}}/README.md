@@ -1,26 +1,24 @@
-{{cookiecutter.project_name}}
-========================================================================
+# {{cookiecutter.project_name}}
 
 {{cookiecutter.project_desc}}
 
 ADD MY CLI DETAIL DESCRIPTION HERE
 
-Installation
-------------------------------------------------------------------------
+## Installation
 
-~~~shell
+~~~console
 > pip install {{cookiecutter.package_name}}
 ~~~
 
-Usage
-------------------------------------------------------------------------
+## Usage
+
 {% if cookiecutter.cli_type == "subcmd" %}
 
 ### Subcmd 1
 
 Subcmd description
 
-~~~shell
+~~~console
 > {{cookiecutter.cli_name}} subcmd1 --option1 --argopt1 arg -v
 ~~~
 
@@ -34,11 +32,12 @@ Subcmd description
 {%- endif %}
 * -v, --verbose
     * verbosity
+
 {% else %}
 
 Command Line tool description
 
-~~~shell
+~~~console
 > {{cookiecutter.cli_name}} --option1 --argopt1 arg -v
 ~~~
 
@@ -52,9 +51,11 @@ Command Line tool description
 {%- endif %}
 * -v, --verbose
     * verbosity
+
 {% endif %}
 
 {%- if cookiecutter.use_config_yaml == 'Yes' %}
+
 ### Configuration file
 
 YAML based configuration file (default file name: {{cookiecutter.package_name}}.yaml)
@@ -76,39 +77,36 @@ optionDict:
 ~~~
 {%- endif %}
 
-Known Issues
-------------------------------------------------------------------------
+## Known Issues
 
 Need to be implemented.
 
-Development
-------------------------------------------------------------------------
+## Development
 
 ### Building an Executable
 
 Install pyinstaller and package the project.
-May want to use venv when executing the pyinstaller.
+The project venv is managed by uv, so use uv to provision and run it.
 
-First, enter venv and install the local package and pyinstaller
+First, create the dev venv and install the local package and pyinstaller
 
-~~~shell
->. .venv/Scripts/activate
-(.venv) >pip install .
+~~~console
+>uv venv --python {{cookiecutter.python_ver}} .venv
+>uv pip install --editable .
 Processing /path/to/proj/{{cookiecutter.project_name}}
 ~snip~
 Installing collected packages: {{cookiecutter.package_name}}
-    Running setup.py install for {{cookiecutter.package_name}} ... done
-Successfully installed {{cookiecutter.package_name}}-0.1.0
+Successfully installed {{cookiecutter.package_name}}-{{cookiecutter.project_ver}}
 
-(.venv) >pip install pyinstaller
+>uv pip install pyinstaller
 ~snip~
-Successfully installed pyinstaller-3.6
+Successfully installed pyinstaller-6.14.0
 ~~~
 
 Use pyinstaller to build the exe file.
 
-~~~shell
-(.venv) >pyinstaller {{cookiecutter.package_name}}\cli.py --onefile --name {{cookiecutter.cli_name}}
+~~~console
+>uv run pyinstaller {{cookiecutter.package_name}}/cli.py --onefile --name {{cookiecutter.cli_name}}
 ~snip~
 13691 INFO: Building EXE from EXE-00.toc completed successfully.
 ~~~
@@ -118,16 +116,19 @@ Executable should be ready in dist/{{cookiecutter.cli_name}}.exe
 ### Versioning
 
 The project will follow the [semver2.0](http://semver.org/) versioning scheme.  
-With initial development phase starting at 0.1.0 and increasing
+With initial development phase starting at {{cookiecutter.project_ver}} and increasing
 minor/patch versions until we deploy the tool to production
 (and reach 1.0.0).
 
-{%- if cookiecutter.use_config_yaml == 'Yes' %}
+{% if cookiecutter.use_config_yaml == 'Yes' %}
 The interface relevant to versioning is whatever defined in this
 document's "Usage" section (includes all (sub)commands, their cli arguments,
 and the format of the configuration file "{{cookiecutter.package_name}}.yaml").
 {%- else %}
 The interface relevant to versioning is whatever defined in this
-document's "Usage" section (includes all (sub)commands, and their cli arguments.
+document's "Usage" section (includes all (sub)commands and their cli arguments).
 {%- endif %}
 
+## Version History
+
+See [CHANGES.md](CHANGES.md) for the full release history.
